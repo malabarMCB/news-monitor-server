@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
+    <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Program.cs" />
