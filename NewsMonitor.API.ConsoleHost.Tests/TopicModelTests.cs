@@ -39,7 +39,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
 
                 jsonTopic.ShouldBeEquivalentTo(new TopicModel
                 { 
-                    Date = Convert.ToDateTime("2017-02-12"),
+                    Date = new DateTime(2017, 02, 12),
                     Description = "topic 1.......",
                     Keyword = "key1",
                     Title = "Topic 1"
@@ -55,12 +55,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                 var response = await client.GetAsync("topics/2");
 
                 // assert
-                response.IsSuccessStatusCode.Should().BeTrue();
-                var message = await response.Content.ReadAsStringAsync();
-
-                var jsonTopic = JsonConvert.DeserializeObject<TopicModel>(message);
-
-                jsonTopic.ShouldBeEquivalentTo(new TopicModel());
+                response.IsSuccessStatusCode.Should().BeFalse();
             }
         }
     }
