@@ -153,6 +153,7 @@
     <Compile Include="GreetingControllerTests.cs" />
     <Compile Include="OwinSetupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopicModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

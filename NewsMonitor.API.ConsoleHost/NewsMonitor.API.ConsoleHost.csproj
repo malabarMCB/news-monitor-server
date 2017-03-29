@@ -104,7 +104,11 @@
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
+    <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\NewsSource.cs" />
+    <Compile Include="Models\TopicModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
