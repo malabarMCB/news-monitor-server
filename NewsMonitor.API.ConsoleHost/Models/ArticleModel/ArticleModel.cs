@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewsMonitor.API.ConsoleHost.Models
+namespace NewsMonitor.API.ConsoleHost.Models.ArticleModel
 {
-    class ArticleModel
+    public class ArticleModel
     {
         public int Id { get; set; }
 

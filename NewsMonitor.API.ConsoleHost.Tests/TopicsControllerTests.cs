@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace NewsMonitor.API.ConsoleHost.Tests
 {
-    public class TopicModelTests
+    public class TopicsControllerTests
     {
         private readonly TestServer _server;
 
-        public TopicModelTests()
+        public TopicsControllerTests()
         {
             _server = TestServer.Create(app => OwinStartup.CoreConfiguration(app, PrepareContainer));
         }

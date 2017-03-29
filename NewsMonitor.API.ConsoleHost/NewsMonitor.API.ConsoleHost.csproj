@@ -103,11 +103,15 @@
   <ItemGroup>
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
+    <Compile Include="Controllers\NewsSourcesController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
-    <Compile Include="Models\ArticleModel.cs" />
-    <Compile Include="Models\NewsSource.cs" />
+    <Compile Include="Models\ArticleModel\ArticleModel.cs" />
+    <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchResult.cs" />
+    <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchRequest.cs" />
+    <Compile Include="Models\NewsSourceModel.cs" />
     <Compile Include="Models\TopicModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Program.cs" />

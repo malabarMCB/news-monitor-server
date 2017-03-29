@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewsMonitor.API.ConsoleHost.Models
 {
-    class NewsSource
+    public class NewsSourceModel
     {
         public string Name { get; set; }
 
