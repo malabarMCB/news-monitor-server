@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using NewsMonitor.API.ConsoleHost.Models;
 using NewsMonitor.API.ConsoleHost.Models.ArticleModel;
@@ -9,7 +8,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
     [RoutePrefix("news-sources")]
     public class NewsSourcesController:ApiController
     {
-        private List<NewsSourceModel> sources = new List<NewsSourceModel>
+        private readonly List<NewsSourceModel> _sources = new List<NewsSourceModel>
         {
             new NewsSourceModel {Name="first"},
             new NewsSourceModel {Name="second" }
@@ -21,7 +20,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
         {
             List<ArticleModel> result=null;
 
-            foreach (var source in sources)
+            foreach (var source in _sources)
                 if (source.Name == name)
                     result= new List<ArticleModel>
                     {

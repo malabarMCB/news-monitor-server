@@ -106,7 +106,13 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\NewsSourcesController.cs" />
-    <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Controllers\PageInfo.cs" />
+    <Compile Include="Controllers\Topics\ITopicsRepository.cs" />
+    <Compile Include="Controllers\Topics\SearchResponse.cs" />
+    <Compile Include="Controllers\Topics\StaticTopicsRepository.cs" />
+    <Compile Include="Controllers\Topics\TopicsController.cs" />
+    <Compile Include="Controllers\Topics\TopicSearchRequest.cs" />
+    <Compile Include="Controllers\Topics\TopicSearchResponse.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
     <Compile Include="Models\ArticleModel\ArticleModel.cs" />
     <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchResult.cs" />

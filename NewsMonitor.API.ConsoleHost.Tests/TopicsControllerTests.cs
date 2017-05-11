@@ -1,20 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
+using NewsMonitor.API.ConsoleHost.Controllers;
+using NewsMonitor.API.ConsoleHost.Controllers.Topics;
 using Ninject;
 using Xunit;
 using NewsMonitor.API.ConsoleHost.Models;
 using Newtonsoft.Json;
+using NSubstitute;
 
 namespace NewsMonitor.API.ConsoleHost.Tests
 {
     public class TopicsControllerTests
     {
         private readonly TestServer _server;
+        private readonly  ITopicsRepository _topicsRepositoryMock;
 
         public TopicsControllerTests()
         {
+            _topicsRepositoryMock = Substitute.For<ITopicsRepository>();
             _server = TestServer.Create(app => OwinStartup.CoreConfiguration(app, PrepareContainer));
         }
 
@@ -22,12 +29,27 @@ namespace NewsMonitor.API.ConsoleHost.Tests
         {
             var kernel = new StandardKernel();
 
+            kernel.Bind<ITopicsRepository>().ToConstant(_topicsRepositoryMock);
+
             return kernel;
         }
 
         [Fact]
         public async void GetCurrentTopic()
         {
+            var expected = new TopicModel
+            {
+                Date = new DateTime(2017, 02, 12),
+                Description = "topic 1.......",
+                Keyword = "key1",
+                Title = "Topic 1"
+            };
+
+            _topicsRepositoryMock
+                .Get(Arg.Is<int>(1))
+                .Returns(expected);
+
+            // act
             using (var client = _server.HttpClient)
             {
                 var response = await client.GetAsync("v1/topics/1");
@@ -36,21 +58,21 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                 response.IsSuccessStatusCode.Should().BeTrue();
                 var message = await response.Content.ReadAsStringAsync();
 
-                var jsonTopic = JsonConvert.DeserializeObject<TopicModel>(message);
+                var actual = JsonConvert.DeserializeObject<TopicModel>(message);
 
-                jsonTopic.ShouldBeEquivalentTo(new TopicModel
-                {
-                    Date = new DateTime(2017, 02, 12),
-                    Description = "topic 1.......",
-                    Keyword = "key1",
-                    Title = "Topic 1"
-                });
+                actual.ShouldBeEquivalentTo(expected);
             }
         }
 
         [Fact]
         public async void GetOutOfRangeTopic()
         {
+            var expected = default(TopicModel);
+
+            _topicsRepositoryMock
+                .Get(Arg.Is<int>(2))
+                .Returns(expected);
+
             using (var client = _server.HttpClient)
             {
                 var response = await client.GetAsync("v1/topics/2");
@@ -58,6 +80,58 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                 // assert
                 response.IsSuccessStatusCode.Should().BeFalse();
                 response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+        }
+
+        [Fact]
+        public async void SingleItemIsFound()
+        {
+            var request = new TopicSearchRequest
+            {
+               NameSearchPattern = "Pattern",
+               Page = new PageInfo
+               {
+                   PageNumber = 1,
+                   ItemsPerPage = 1
+               }
+            };
+
+            var expectedItem = new TopicModel
+            {
+                Date = new DateTime(2017, 02, 12),
+                Description = "topic 1.......",
+                Keyword = "key1",
+                Title = "Pattern 1"
+            };
+
+            var expected = new TopicSearchResponse
+            {
+                Request = request,
+                TotalItemsCount = 1,
+                Items = new List<TopicModel>
+                {
+                    expectedItem
+                }
+            };
+
+            _topicsRepositoryMock
+                .Search(Arg.Is<string>(request.NameSearchPattern),
+                    Arg.Is<int>(request.Page.ItemsPerPage),
+                    Arg.Is<int>(request.Page.PageNumber))
+                .Returns(new SearchResponse
+                {
+                    Items = expected.Items,
+                    TotalItemsCount = expected.TotalItemsCount
+                });
+
+            using (var client = _server.HttpClient)
+            {
+                var stringContent = new StringContent(JsonConvert.SerializeObject(request));
+                var response = await client.PostAsync("v1/topics/search",stringContent);
+
+                // assert
+                response.IsSuccessStatusCode.Should().BeFalse();
+                //
             }
         }
     }
