@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
 using Ninject;
@@ -29,16 +30,16 @@ namespace NewsMonitor.API.ConsoleHost.Tests
         {
             using (var client = _server.HttpClient)
             {
-                var response = await client.GetAsync("topics/1");
+                var response = await client.GetAsync("v1/topics/1");
 
                 // assert
                 response.IsSuccessStatusCode.Should().BeTrue();
                 var message = await response.Content.ReadAsStringAsync();
 
-                var jsonTopic =JsonConvert.DeserializeObject<TopicModel>(message);
+                var jsonTopic = JsonConvert.DeserializeObject<TopicModel>(message);
 
                 jsonTopic.ShouldBeEquivalentTo(new TopicModel
-                { 
+                {
                     Date = new DateTime(2017, 02, 12),
                     Description = "topic 1.......",
                     Keyword = "key1",
@@ -52,10 +53,11 @@ namespace NewsMonitor.API.ConsoleHost.Tests
         {
             using (var client = _server.HttpClient)
             {
-                var response = await client.GetAsync("topics/2");
+                var response = await client.GetAsync("v1/topics/2");
 
                 // assert
                 response.IsSuccessStatusCode.Should().BeFalse();
+                response.StatusCode.Should().Be(HttpStatusCode.NotFound);
             }
         }
     }
