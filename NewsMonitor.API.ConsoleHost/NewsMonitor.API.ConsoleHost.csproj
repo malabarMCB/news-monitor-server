@@ -87,8 +87,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -107,12 +115,13 @@
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\NewsSourcesController.cs" />
     <Compile Include="Controllers\PageInfo.cs" />
-    <Compile Include="Controllers\Topics\ITopicsRepository.cs" />
-    <Compile Include="Controllers\Topics\SearchResponse.cs" />
-    <Compile Include="Controllers\Topics\StaticTopicsRepository.cs" />
+    <Compile Include="Controllers\Topics\Search\SearchTopicModel.cs" />
+    <Compile Include="Controllers\Topics\TopicRepository\ITopicsRepository.cs" />
+    <Compile Include="Controllers\Topics\Search\SearchResponse.cs" />
+    <Compile Include="Controllers\Topics\TopicRepository\StaticTopicsRepository.cs" />
     <Compile Include="Controllers\Topics\TopicsController.cs" />
-    <Compile Include="Controllers\Topics\TopicSearchRequest.cs" />
-    <Compile Include="Controllers\Topics\TopicSearchResponse.cs" />
+    <Compile Include="Controllers\Topics\Search\TopicSearchRequest.cs" />
+    <Compile Include="Controllers\Topics\Search\TopicSearchResponse.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
     <Compile Include="Models\ArticleModel\ArticleModel.cs" />
     <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchResult.cs" />

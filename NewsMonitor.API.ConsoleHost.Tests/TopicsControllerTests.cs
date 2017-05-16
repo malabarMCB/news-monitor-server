@@ -6,6 +6,8 @@ using FluentAssertions;
 using Microsoft.Owin.Testing;
 using NewsMonitor.API.ConsoleHost.Controllers;
 using NewsMonitor.API.ConsoleHost.Controllers.Topics;
+using NewsMonitor.API.ConsoleHost.Controllers.Topics.Search;
+using NewsMonitor.API.ConsoleHost.Controllers.Topics.TopicRepository;
 using Ninject;
 using Xunit;
 using NewsMonitor.API.ConsoleHost.Models;
@@ -96,11 +98,8 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                }
             };
 
-            var expectedItem = new TopicModel
+            var expectedItem = new SearchTopicModel
             {
-                Date = new DateTime(2017, 02, 12),
-                Description = "topic 1.......",
-                Keyword = "key1",
                 Title = "Pattern 1"
             };
 
@@ -108,7 +107,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
             {
                 Request = request,
                 TotalItemsCount = 1,
-                Items = new List<TopicModel>
+                Items = new List<SearchTopicModel>
                 {
                     expectedItem
                 }

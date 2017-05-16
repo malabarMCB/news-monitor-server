@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using NewsMonitor.API.ConsoleHost.Controllers.Topics.Search;
+using NewsMonitor.API.ConsoleHost.Controllers.Topics.TopicRepository;
 
 namespace NewsMonitor.API.ConsoleHost.Controllers.Topics
 {
