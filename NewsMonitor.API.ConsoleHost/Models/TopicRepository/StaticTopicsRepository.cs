@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NewsMonitor.API.ConsoleHost.Models.Topics.GetArticles;
+using NewsMonitor.API.ConsoleHost.Models.Topics.Info;
 using NewsMonitor.API.ConsoleHost.Models.Topics.Search;
 using NewsMonitor.API.Models;
 
@@ -10,7 +12,7 @@ namespace NewsMonitor.API.ConsoleHost.Models.TopicRepository
     //TODO add ctor
     public class StaticTopicsRepository : ITopicsRepository
     {
-        private readonly List<TopicModel> _topics = new List<TopicModel>
+        static private readonly List<TopicModel> _topics = new List<TopicModel>
         {
             new TopicModel
             {
@@ -143,6 +145,55 @@ namespace NewsMonitor.API.ConsoleHost.Models.TopicRepository
                 Items = topics,
                 TotalItemsCount = topicsCount
             };
+
+            return Task.FromResult(result);
+        }
+
+        public Task<TopicInfoModel> Info(Guid id)
+        {
+            var result = _topics
+                .Where(t => t.Id == id)
+                .Select(t => new TopicInfoModel
+                {
+                    Id = t.Id,
+                    Date = t.Date,
+                    Description = t.Description,
+                    Keyword = t.Keyword,
+                    Title = t.Title
+                }).ToList();
+
+            return Task.FromResult(result[0]);
+        }
+
+        public Task<int> CountArticles(Guid id)
+        {
+            var newsSources = _topics
+                .Where(t => t.Id == id)
+                .Select(t => t.NewsSources);
+
+            int result = 0;
+            foreach (var articel in newsSources)
+                result += articel.Count;
+
+            return Task.FromResult(result);
+        }
+
+        public Task<List<GetArticlesModel>> GetArticles(Guid id, int itemsPerPage, int pageNumber)
+        {
+            var result = (from t in _topics
+                where t.Id == id
+                from source in t.NewsSources
+                from article in source.Articles
+                select new GetArticlesModel
+                {
+                    NewsSourceName = source.Name,
+                    Title = article.Title,
+                    Url = article.Url
+                })
+                .OrderBy(am => am.Title)
+                .Skip(itemsPerPage * pageNumber)
+                .Take(itemsPerPage)
+                .ToList();
 
             return Task.FromResult(result);
         }

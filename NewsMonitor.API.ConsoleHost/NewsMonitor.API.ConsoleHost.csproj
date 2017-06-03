@@ -112,6 +112,8 @@
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
     <Compile Include="Controllers\NewsSourcesController.cs" />
+    <Compile Include="Models\Topics\GetArticles\GetArticlesModel.cs" />
+    <Compile Include="Models\Topics\Info\TopicInfoModel.cs" />
     <Compile Include="Models\Topics\Search\SearchTopicModel.cs" />
     <Compile Include="Models\TopicRepository\ITopicsRepository.cs" />
     <Compile Include="Models\Topics\Search\SearchResponse.cs" />
