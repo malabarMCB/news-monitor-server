@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace NewsMonitor.API.ConsoleHost.Controllers.Topics.Search
+namespace NewsMonitor.API.ConsoleHost.Models.Topics.Search
 {
     public class SearchTopicModel
     {

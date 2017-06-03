@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using NewsMonitor.API.ConsoleHost.Models;
 
-namespace NewsMonitor.API.ConsoleHost.Controllers.Topics.Search
+namespace NewsMonitor.API.ConsoleHost.Models.Topics.Search
 {
     public class SearchResponse
     {

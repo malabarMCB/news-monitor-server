@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NewsMonitor.API.ConsoleHost.Models.ArticleModel.ArticleSearchResult
+﻿namespace NewsMonitor.API.Models.ArticleModel.ArticleSearchResult
 {
     public class ArticleSearchRequest
     {

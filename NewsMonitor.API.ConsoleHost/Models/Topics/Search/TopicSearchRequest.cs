@@ -1,6 +1,8 @@
+using NewsMonitor.API.ConsoleHost.Controllers;
+using NewsMonitor.API.Models;
 using Newtonsoft.Json;
 
-namespace NewsMonitor.API.ConsoleHost.Controllers.Topics
+namespace NewsMonitor.API.ConsoleHost.Models.Topics.Search
 {
     public class TopicSearchRequest
     {

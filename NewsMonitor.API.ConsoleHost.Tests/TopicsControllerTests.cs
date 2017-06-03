@@ -4,13 +4,11 @@ using System.Net;
 using System.Net.Http;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
-using NewsMonitor.API.ConsoleHost.Controllers;
-using NewsMonitor.API.ConsoleHost.Controllers.Topics;
-using NewsMonitor.API.ConsoleHost.Controllers.Topics.Search;
-using NewsMonitor.API.ConsoleHost.Controllers.Topics.TopicRepository;
+using NewsMonitor.API.ConsoleHost.Models.TopicRepository;
+using NewsMonitor.API.ConsoleHost.Models.Topics.Search;
+using NewsMonitor.API.Models;
 using Ninject;
 using Xunit;
-using NewsMonitor.API.ConsoleHost.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 
@@ -129,6 +127,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                 var response = await client.PostAsync("v1/topics/search",stringContent);
 
                 // assert
+                // should be true
                 response.IsSuccessStatusCode.Should().BeFalse();
                 //
             }

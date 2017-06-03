@@ -111,23 +111,15 @@
   <ItemGroup>
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
-    <Compile Include="Controllers\ArticlesController.cs" />
-    <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\NewsSourcesController.cs" />
-    <Compile Include="Controllers\PageInfo.cs" />
-    <Compile Include="Controllers\Topics\Search\SearchTopicModel.cs" />
-    <Compile Include="Controllers\Topics\TopicRepository\ITopicsRepository.cs" />
-    <Compile Include="Controllers\Topics\Search\SearchResponse.cs" />
-    <Compile Include="Controllers\Topics\TopicRepository\StaticTopicsRepository.cs" />
-    <Compile Include="Controllers\Topics\TopicsController.cs" />
-    <Compile Include="Controllers\Topics\Search\TopicSearchRequest.cs" />
-    <Compile Include="Controllers\Topics\Search\TopicSearchResponse.cs" />
+    <Compile Include="Models\Topics\Search\SearchTopicModel.cs" />
+    <Compile Include="Models\TopicRepository\ITopicsRepository.cs" />
+    <Compile Include="Models\Topics\Search\SearchResponse.cs" />
+    <Compile Include="Models\TopicRepository\StaticTopicsRepository.cs" />
+    <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Models\Topics\Search\TopicSearchRequest.cs" />
+    <Compile Include="Models\Topics\Search\TopicSearchResponse.cs" />
     <Compile Include="Logging\NLogExceptionLogger.cs" />
-    <Compile Include="Models\ArticleModel\ArticleModel.cs" />
-    <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchResult.cs" />
-    <Compile Include="Models\ArticleModel\ArticleSearchResult\ArticleSearchRequest.cs" />
-    <Compile Include="Models\NewsSourceModel.cs" />
-    <Compile Include="Models\TopicModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +131,12 @@
     <None Include="App.config" />
     <None Include="nlog.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewsMonitor.API\NewsMonitor.API.csproj">
+      <Project>{80245d99-3ec1-4ba0-a03e-d72186c6182a}</Project>
+      <Name>NewsMonitor.API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -150,8 +150,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticlesControllerTests.cs" />
-    <Compile Include="GreetingControllerTests.cs" />
     <Compile Include="NewsSourcesControllerTests.cs" />
     <Compile Include="OwinSetupTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

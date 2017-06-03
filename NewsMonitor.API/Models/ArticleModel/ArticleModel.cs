@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NewsMonitor.API.ConsoleHost.Models.ArticleModel
+namespace NewsMonitor.API.Models.ArticleModel
 {
     public class ArticleModel
     {

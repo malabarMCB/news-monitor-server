@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
+using NewsMonitor.API.Models;
 using Ninject;
 using Xunit;
-using NewsMonitor.API.ConsoleHost.Models.ArticleModel;
 using Newtonsoft.Json;
 
 namespace NewsMonitor.API.ConsoleHost.Tests

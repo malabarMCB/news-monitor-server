@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using NewsMonitor.API.ConsoleHost.Models;
-using NewsMonitor.API.ConsoleHost.Models.ArticleModel;
+using NewsMonitor.API.Models;
 
 namespace NewsMonitor.API.ConsoleHost.Controllers
 {

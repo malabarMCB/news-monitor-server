@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using NewsMonitor.API.ConsoleHost.Controllers.Topics.Search;
-using NewsMonitor.API.ConsoleHost.Models;
+using NewsMonitor.API.ConsoleHost.Models.Topics.Search;
+using NewsMonitor.API.Models;
 
-namespace NewsMonitor.API.ConsoleHost.Controllers.Topics.TopicRepository
+namespace NewsMonitor.API.ConsoleHost.Models.TopicRepository
 {
     public interface ITopicsRepository
     {
