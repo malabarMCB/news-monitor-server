@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace NewsMonitor.API.Models
@@ -19,6 +20,8 @@ namespace NewsMonitor.API.Models
 
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        public List<NewsSourceModel> NewsSources { get; set; }
 
         public TopicModel()
         {

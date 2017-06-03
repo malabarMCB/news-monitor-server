@@ -1,4 +1,3 @@
-using NewsMonitor.API.ConsoleHost.Controllers;
 using NewsMonitor.API.Models;
 using Newtonsoft.Json;
 

@@ -14,9 +14,6 @@ namespace NewsMonitor.API.Models
         [JsonProperty("title")]
         public string Title { get; set; }
 
-        [JsonProperty("keyword")]
-        public string Keyword { get; set; }
-
         [JsonProperty("text")]
         public string Text { get; set; }
 

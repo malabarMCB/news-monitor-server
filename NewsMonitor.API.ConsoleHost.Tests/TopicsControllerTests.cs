@@ -91,7 +91,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
                NameSearchPattern = "Pattern",
                Page = new PageInfo
                {
-                   PageNumber = 1,
+                   PageNumber = 0,
                    ItemsPerPage = 1
                }
             };
