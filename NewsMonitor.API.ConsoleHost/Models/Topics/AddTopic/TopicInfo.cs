@@ -1,15 +1,11 @@
 ﻿using System;
-using NewsMonitor.API.Models;
 using Newtonsoft.Json;
 
-namespace NewsMonitor.API.ConsoleHost.Models.Topics.Info
+namespace NewsMonitor.API.ConsoleHost.Models.Topics.AddTopic
 {
-    public class TopicInfoModel
+    public class TopicInfo
     {
-        [JsonProperty("id")]
-        public Guid Id { get; set; }
-
-        [JsonProperty("date"), JsonConverter(typeof(CustomDateTimeConverter))]
+        [JsonProperty("date")]
         public DateTime Date { get; set; }
 
         [JsonProperty("title")]

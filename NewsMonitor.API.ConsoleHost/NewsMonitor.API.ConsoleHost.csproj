@@ -112,6 +112,13 @@
     <Compile Include="Configurations\AssembliesResolver.cs" />
     <Compile Include="Configurations\WebApiConfiguration.cs" />
     <Compile Include="Controllers\NewsSourcesController.cs" />
+    <Compile Include="Models\NewsSources\GetArticlesRequest.cs" />
+    <Compile Include="Models\NewsSources\GetArticlesResponse.cs" />
+    <Compile Include="Models\NewsSources\GetNSArticles.cs" />
+    <Compile Include="Models\Topics\AddTopic\AddTopicRequest.cs" />
+    <Compile Include="Models\Topics\AddTopic\TopicInfo.cs" />
+    <Compile Include="Models\Topics\AddTopic\Topic.cs" />
+    <Compile Include="Models\Topics\EditTopic\EditTopicRequest.cs" />
     <Compile Include="Models\Topics\GetArticles\GetArticlesModel.cs" />
     <Compile Include="Models\Topics\Info\TopicInfoModel.cs" />
     <Compile Include="Models\Topics\Search\SearchTopicModel.cs" />
@@ -140,5 +147,6 @@
       <Name>NewsMonitor.API</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

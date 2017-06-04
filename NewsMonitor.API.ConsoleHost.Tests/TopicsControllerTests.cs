@@ -112,7 +112,7 @@ namespace NewsMonitor.API.ConsoleHost.Tests
             };
 
             _topicsRepositoryMock
-                .Search(Arg.Is<string>(request.NameSearchPattern),
+                .SearchTopic(Arg.Is<string>(request.NameSearchPattern),
                     Arg.Is<int>(request.Page.ItemsPerPage),
                     Arg.Is<int>(request.Page.PageNumber))
                 .Returns(new SearchResponse

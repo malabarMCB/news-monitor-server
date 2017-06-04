@@ -1,32 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
+using NewsMonitor.API.ConsoleHost.Models.NewsSources;
+using NewsMonitor.API.ConsoleHost.Models.TopicRepository;
 using NewsMonitor.API.Models;
 
 namespace NewsMonitor.API.ConsoleHost.Controllers
 {
-    [RoutePrefix("news-sources")]
-    public class NewsSourcesController:ApiController
+    [RoutePrefix("v1/news-sources")]
+    public class NewsSourcesController : ApiController
     {
-        private readonly List<NewsSourceModel> _sources = new List<NewsSourceModel>
+        private ITopicsRepository _repository;
+
+        public NewsSourcesController(ITopicsRepository repository)
         {
-            new NewsSourceModel {Name="first"},
-            new NewsSourceModel {Name="second" }
-        };
+            if (repository == null)
+                throw new ArgumentNullException(nameof(repository));
+
+            _repository = repository;
+        }
 
         [HttpGet]
-        [Route("{name}/articles")]
-        public List<ArticleModel> GetArticleFromCurrentNewsSource(string name)
+        [Route("names")]
+        public async Task<List<string>>  GetNewsSourceNames()
         {
-            List<ArticleModel> result=null;
+            return await _repository.GetNewsSourcesNames().ConfigureAwait(false);
+        }
 
-            foreach (var source in _sources)
-                if (source.Name == name)
-                    result= new List<ArticleModel>
-                    {
-                        new ArticleModel {Text="Test" }
-                    };
+        [HttpPost]
+        [Route("articles")]
+        public async Task<GetArticlesResponse> GetArticles(GetArticlesRequest request)
+        {
+           var result= await _repository.GetNewsSourceArticles(request.SourceName, 
+                request.ItemsPerPage, 
+                request.PageNumber)
+                .ConfigureAwait(false);
 
-            return result;
+            return new GetArticlesResponse
+            {
+                Request = request,
+                Articles = result.NewsSource,
+                TotalArticlesCount = result.TotalArticlesCount
+            };
         }
     }
 }

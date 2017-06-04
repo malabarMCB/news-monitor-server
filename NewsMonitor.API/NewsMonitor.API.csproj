@@ -33,7 +33,8 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\Article\ArticleModel.cs" />
+    <Compile Include="Models\CustomDateTimeConverter.cs" />
     <Compile Include="Models\NewsSourceModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Models\TopicModel.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace NewsMonitor.API.Models
+namespace NewsMonitor.API.Models.Article
 {
     public class ArticleModel
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.Owin.Testing;
 using NewsMonitor.API.Models;
+using NewsMonitor.API.Models.Article;
 using Ninject;
 using Xunit;
 using Newtonsoft.Json;

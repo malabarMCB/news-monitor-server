@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using NewsMonitor.API.ConsoleHost.Models.AddTopic;
 using NewsMonitor.API.ConsoleHost.Models.TopicRepository;
+using NewsMonitor.API.ConsoleHost.Models.Topics.EditTopic;
 using NewsMonitor.API.ConsoleHost.Models.Topics.GetArticles;
-using NewsMonitor.API.ConsoleHost.Models.Topics.Info;
 using NewsMonitor.API.ConsoleHost.Models.Topics.Search;
 using NewsMonitor.API.Models;
 
@@ -13,7 +14,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
     [RoutePrefix("v1/topics")]
     public class TopicsController : ApiController
     {
-        private readonly ITopicsRepository _repository;
+        private  ITopicsRepository _repository;
 
         public TopicsController(ITopicsRepository repository)
         {
@@ -38,7 +39,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
         [Route("search")]
         public async Task<TopicSearchResponse> Search(TopicSearchRequest request)
         {
-            var topics = await _repository.Search(request.NameSearchPattern,
+            var topics = await _repository.SearchTopic(request.NameSearchPattern,
                 request.Page.ItemsPerPage,
                 request.Page.PageNumber)
                 .ConfigureAwait(false);
@@ -56,7 +57,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
         public async Task<IHttpActionResult> Info(string id)
         {
             var idGuid = Guid.Parse(id);
-            var result= await _repository.Info(idGuid);
+            var result= await _repository.GetTopicInfo(idGuid).ConfigureAwait(false);
 
            return result==null
                  ? (IHttpActionResult)NotFound()
@@ -69,7 +70,7 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
         {
             var idGuid = Guid.Parse(id);
 
-            return await _repository.CountArticles(idGuid);
+            return await _repository.CountTopicArticles(idGuid).ConfigureAwait(false);
         }
 
         [HttpPost]
@@ -78,7 +79,40 @@ namespace NewsMonitor.API.ConsoleHost.Controllers
         {
             var idGuid = Guid.Parse(id);
 
-            return await _repository.GetArticles(idGuid, pageInfo.ItemsPerPage, pageInfo.PageNumber);
+            return await _repository.GetTopicArticles(idGuid,
+                pageInfo.ItemsPerPage, 
+                pageInfo.PageNumber)
+                .ConfigureAwait(false);
+        }
+
+        [HttpGet]
+        [Route("{id}/news-sources/articles")]
+        public async Task<List<NewsSourceModel>> GetNewsSources(string id)
+        {
+            var idGuid = Guid.Parse(id);
+
+            return await _repository.GetTopicNewsSourcesArticles(idGuid).ConfigureAwait(false);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public async Task<IHttpActionResult> AddTopic(AddTopicRequest request)
+        {
+             await _repository.AddTopic(request.Topic.Info, request.Topic.NewsSources)
+                .ConfigureAwait(false);
+
+            return Ok(0);
+        }
+
+        [HttpPut]
+        [Route("edit")]
+        public async Task<IHttpActionResult> EditTopic(EditTopicRequest request)
+        {
+            await _repository.EditTopic(Guid.Parse(request.Id),
+                request.Topic.Info,
+                request.Topic.NewsSources);
+
+            return Ok(0);
         }
     }
 }
